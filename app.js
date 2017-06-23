@@ -13,41 +13,60 @@ function Order(name, quantity, firstName, lastName, address) {
 
 function handleEvent(event) {
   event.preventDefault();
-  var theForm = document.createElement('newForm');
+  // var theForm = document.createElement('li');
 
   function handleForm(event) {
     // event.preventDefault();
     console.log(event);
-    var name = event.target.form.elements.dropDownMenu.value;//make all 4 console.log() into variables
-    var quantity = parseFloat(event.target.form.elements.avgInput.value);
-    var firstName = event.target.form.elements.minInput.value;
-    var lastName = event.target.form.elements.maxInput.value;
-    var address = event.target.form.elements.address.vale);
-
-if(!name || !quantity || !firstName || !lastName || !address) {
-  return null;
-}//a bang statement to prevent allowance of empty field submits from adding a new store feature
-event.target.form.elements.name.value = null;//making values to clear the input after another button is pressed
-event.target.form.elements.quantity.value = null;
-event.target.form.elements.firstName.value = null;
-event.target.form.elements.lastName.value = null;
-event.target.form.elements.address.value = null
-
-//new Order(name, quantity, firstName, lastName, address) is much less text than the line below and does the same thing ???
-return newestStore = new Store(newLocation, 14, minCustomersPerHour, maxCustomersPerHour, avgCookiesPerSale);
-}
-theForm.addEventListener('place-order', handleForm);
-var newestStore = handleForm(event);
-if (!newestStore) {
-alert ('All fields required!');
-} else { //do we even need an else??
+    var dropDownMenu = event.target.form.elements.dropDownMenu.value;
+    var quantity = parseInt(event.target.form.elements.quantityInput.value);
+    var firstName = event.target.form.elements.firstNameInput.value;
+    var lastName = event.target.form.elements.lastNameInput.value;
+    var address = event.target.form.elements.addressInput.value;
+    console.log('productName', event.target.form.elements.dropDownMenu.vale);
+    console.log('quantity', parseInt(event.target.form.elements.quantityInput.value));
+    console.log('firstName', event.target.form.elements.firstNameInput.value);
+    console.log('lastName', event.target.form.elements.lastNameInput.value);
 
 
-theForm.addEventListener('submit', );
-function handleForm(event) {
-  if () {
-    localStorage.orderFormData = JSON.stringify(allOrders);
-  } else {
-    alert ''
+    if(!dropDownMenu || !quantity || !firstName || !lastName || !address) {
+      return null;
+    }//a bang statement to prevent allowance of empty field submits from adding a new store feature
+    event.target.form.elements.dropDownMenu.value = null;//making values to clear the input after another button is pressed
+    event.target.form.elements.quantityInput.value = null;
+    event.target.form.elements.firstNameInput.value = null;
+    event.target.form.elements.lastNameInput.value = null;
+    event.target.form.elements.addressInput.value = null;
+
+    allOrders.push(dropDownMenu, quantity, firstName, lastName, address);
+    return localStorage.orderFormData = JSON.stringify(allOrders);
   }
+  // orderFormData.addEventListener('submit', handleForm);
+  // var newestOrder = handleForm(event);
+  // if (!newestOrder) {
+  //   alert ('All store information fields must have input!');
+  // } else {
+  //   orderFormData.render();
+  // }
+
 }
+
+var buttonForPlaceOrder = document.getElementById('placeOrder');
+buttonForPlaceOrder.addEventListener('click', handleEvent);
+
+// theForm.addEventListener('place-order', handleForm);
+// var newestStore = handleForm(event);
+// if (!newestStore) {
+// console.log('All fields required!');
+// } else { //do we even need an else??
+//   localStorage.orderFormData = JSON.stringify(allOrders);
+// }
+// }
+// theForm.addEventListener('submit', );
+// function handleForm(event) {
+//   if () {
+//     localStorage.orderFormData = JSON.stringify(allOrders);
+//   } else {
+//     alert ''
+//   }
+// }
