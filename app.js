@@ -1,46 +1,59 @@
-'used strict'
+'used strict';
 
 // event.preventDefault();
 var allOrders = [];
 
-function Order(name, quantity, firstName, lastName, address) {
-  this.name = name;
+//constructor function
+function Order(products, quantity, firstName, lastName, address) {
+  this.products = products;
   this.quantity = quantity;
   this.firstName = firstName;
   this.lastName = lastName;
   this.address = address;
+  allOrders.push(this);
 }
 
+//
 function handleEvent(event) {
   event.preventDefault();
+  var dropDownMenu = document.getElementById('dropDownMenu');
+  var firstName = document.getElementById('firstName');
+  var lastName = document.getElementById('lastName');
+  var quantity = document.getElementById('quantity');
+  var address = document.getElementById('address');
+  var productName = document.getElementById('products');
+  new Order(quantity, firstName, lastName, address, products);
+  pushOrder();
+}
   // var theForm = document.createElement('li');
 
-  function handleForm(event) {
+//form
+function handleForm(event) {
     // event.preventDefault();
-    console.log(event);
-    var dropDownMenu = event.target.form.elements.dropDownMenu.value;
-    var quantity = parseInt(event.target.form.elements.quantityInput.value);
-    var firstName = event.target.form.elements.firstNameInput.value;
-    var lastName = event.target.form.elements.lastNameInput.value;
-    var address = event.target.form.elements.addressInput.value;
-    console.log('productName', event.target.form.elements.dropDownMenu.vale);
-    console.log('quantity', parseInt(event.target.form.elements.quantityInput.value));
-    console.log('firstName', event.target.form.elements.firstNameInput.value);
-    console.log('lastName', event.target.form.elements.lastNameInput.value);
+  console.log(event);
+  var dropDownMenu = event.target.form.elements.dropDownMenu.value;
+  var quantity = parseInt(event.target.form.elements.quantityInput.value);
+  var firstName = event.target.form.elements.firstNameInput.value;
+  var lastName = event.target.form.elements.lastNameInput.value;
+  var address = event.target.form.elements.addressInput.value;
 
+  if(!dropDownMenu || !quantity || !firstName || !lastName || !address) {
+    return null;
+  }//a bang statement to prevent allowance of empty field submits from adding a new store feature
+  event.target.form.elements.dropDownMenu.value = null;//making values to clear the input after another button is pressed
+  event.target.form.elements.quantityInput.value = null;
+  event.target.form.elements.firstNameInput.value = null;
+  event.target.form.elements.lastNameInput.value = null;
+  event.target.form.elements.addressInput.value = null;
+}
 
-    if(!dropDownMenu || !quantity || !firstName || !lastName || !address) {
-      return null;
-    }//a bang statement to prevent allowance of empty field submits from adding a new store feature
-    event.target.form.elements.dropDownMenu.value = null;//making values to clear the input after another button is pressed
-    event.target.form.elements.quantityInput.value = null;
-    event.target.form.elements.firstNameInput.value = null;
-    event.target.form.elements.lastNameInput.value = null;
-    event.target.form.elements.addressInput.value = null;
+  //allOrders.push(dropDownMenu, quantity, firstName, lastName, address);
+function pushOrder(){
+  localStorage.clear();
+  var allOrdersJSON = JSON.stringify(allOrders);
+  localStorage.allOrders = allOrdersJSON;
+}
 
-    allOrders.push(dropDownMenu, quantity, firstName, lastName, address);
-    return localStorage.orderFormData = JSON.stringify(allOrders);
-  }
   // orderFormData.addEventListener('submit', handleForm);
   // var newestOrder = handleForm(event);
   // if (!newestOrder) {
@@ -49,6 +62,13 @@ function handleEvent(event) {
   //   orderFormData.render();
   // }
 
+// }
+function pullOrder() {
+  var retrieveOrderData = localStorage.allOrders;
+  var parseOrderData = JSON.parse(retrieveOrderData);
+  for (var i = 0; i < parseOrderData.length; i++) {
+    allOrders[i] = parseOrderData[i];
+  }
 }
 
 var buttonForPlaceOrder = document.getElementById('placeOrder');
