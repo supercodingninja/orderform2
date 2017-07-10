@@ -71,8 +71,34 @@ function pullOrder() {
   }
 }
 
-var buttonForPlaceOrder = document.getElementById('placeOrder');
-buttonForPlaceOrder.addEventListener('click', handleEvent);
+// var buttonForPlaceOrder = document.getElementById('placeOrder');
+// buttonForPlaceOrder.addEventListener('click', handleEvent);
+
+theForm.addEventListener('submit', convertForm);
+
+if (localStorage) {
+  pullOrder;
+}
+// please verify this file //
+// Hello, Everyone
+//
+// [8:11]
+// I tried calling each of you, via slack:
+//
+// [8:12]
+// The branch is created; but I do not believe my line of code went in.
+//
+// [8:12]
+// Bruce, please verify 63
+//
+// [8:13]
+// I do not believe I was working 81
+//
+// [8:13]
+// however, that looks like what I typed.
+//
+// [8:13]
+// Thank you
 
 // theForm.addEventListener('place-order', handleForm);
 // var newestStore = handleForm(event);
